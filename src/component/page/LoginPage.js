@@ -56,8 +56,9 @@ export default function LoginPage() {
             })
             .catch((error) => {
                 // Xử lý lỗi đăng nhập
-                console.error('Đăng nhập thất bại:', error);
-                setErrorMessage('Đăng nhập không thành công. Vui lòng kiểm tra tên người dùng và mật khẩu.');
+                console.error('Đăng nhập thất bại:', error.response.data.message);
+                // setErrorMessage('Đăng nhập không thành công. Vui lòng kiểm tra tên người dùng và mật khẩu.');
+                setErrorMessage(error.response.data.message);
             });
     };
 
