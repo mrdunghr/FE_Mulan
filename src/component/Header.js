@@ -39,11 +39,18 @@ export default function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ml-auto">
                         {!userInfo ? (
-                            <li className="nav-item">
-                                <Link to="/login" className="nav-link">
-                                    Đăng Nhập
-                                </Link>
-                            </li>
+                            <>
+                                <li className="nav-item">
+                                    <Link to="/login" className="nav-link">
+                                        Đăng Nhập
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/register" className="nav-link">
+                                        Đăng ký
+                                    </Link>
+                                </li>
+                            </>
                         ) : (
                             <>
                                 <li className="nav-item">

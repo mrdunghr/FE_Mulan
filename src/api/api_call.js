@@ -31,3 +31,21 @@ export const checkThePermissionToUseTheKey = (idKey) => {
             throw error; // Ném lỗi để xử lý ở phần gọi hàm
         });
 }
+
+export const register = (username, password, email, phone) => {
+    const data = {
+        "username": username,
+        "password": password,
+        "email": email,
+        "phone": phone,
+    }
+    return axios.post(BASE_URL + `/api/v1/customers/register`, data)
+        .then((response) => {
+            return response.data
+        })
+        .catch((error) => {
+            // Xử lý lỗi ở đây
+            console.error(error);
+            throw error; // Ném lỗi để xử lý ở phần gọi hàm
+        });
+}

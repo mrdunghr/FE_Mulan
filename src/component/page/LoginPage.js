@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {login} from "../../api/api_call";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import Header from "../Header";
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -31,7 +32,8 @@ export default function LoginPage() {
         setPassword(e.target.value);
     };
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định của nút
         login(username, password)
             .then((response) => {
                 console.log('Đăng nhập thành công:', response.data);
@@ -49,7 +51,7 @@ export default function LoginPage() {
                     // Lưu thông tin người dùng vào state
                     setUserInfo(decodedToken);
 
-                    // Chuyển hướng sang trang chi tiết người dùng
+                    // Chuyển hướng sang trang home
                     navigate('/');
                 }
 
@@ -63,38 +65,41 @@ export default function LoginPage() {
     };
 
     return (
-        <div>
-            <div className="container mt-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-4">
-                        <h2 className="text-center">Đăng nhập</h2>
-                        <form>
-                            <div className="form-group">
-                                <label htmlFor="username">Tên người dùng:</label>
-                                <input type="text" className="form-control" id="username" placeholder="Nhập tên người dùng" value={username}
-                                    onChange={handleUsernameChange}/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password">Mật khẩu:</label>
-                                <input type="password" className="form-control" id="password" placeholder="Nhập mật khẩu" value={password}
-                                    onChange={handlePasswordChange}/>
-                            </div>
-                            <div className="form-group text-center">
-                                <button type="submit" className="btn btn-primary"
-                                    onClick={handleLogin}>
-                                    Đăng nhập
-                                </button>
-                            </div>
-                            {errorMessage && (
-                                <div className="alert alert-danger text-center">
-                                    {errorMessage}
+        <>
+            <Header></Header>
+            <div>
+                <div className="container mt-5">
+                    <div className="row justify-content-center">
+                        <div className="col-md-4">
+                            <h2 className="text-center">Đăng nhập</h2>
+                            <form>
+                                <div className="form-group">
+                                    <label htmlFor="username">Tên người dùng:</label>
+                                    <input type="text" className="form-control" id="username" placeholder="Nhập tên người dùng" value={username}
+                                           onChange={handleUsernameChange}/>
                                 </div>
-                            )}
-                        </form>
+                                <div className="form-group">
+                                    <label htmlFor="password">Mật khẩu:</label>
+                                    <input type="password" className="form-control" id="password" placeholder="Nhập mật khẩu" value={password}
+                                           onChange={handlePasswordChange}/>
+                                </div>
+                                <div className="form-group text-center">
+                                    <button type="submit" className="btn btn-primary"
+                                            onClick={handleLogin}>
+                                        Đăng nhập
+                                    </button>
+                                </div>
+                                {errorMessage && (
+                                    <div className="alert alert-danger text-center">
+                                        {errorMessage}
+                                    </div>
+                                )}
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 
 }
