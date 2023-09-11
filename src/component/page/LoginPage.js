@@ -19,7 +19,7 @@ export default function LoginPage() {
             setUserInfo(parsedUserInfo);
 
             // Nếu đã đăng nhập, chuyển hướng đến trang chi tiết người dùng
-            navigate('/customer');
+            navigate('/');
         }
     }, []);
 
@@ -50,7 +50,7 @@ export default function LoginPage() {
                     setUserInfo(decodedToken);
 
                     // Chuyển hướng sang trang chi tiết người dùng
-                    navigate('/customer');
+                    navigate('/');
                 }
 
             })
