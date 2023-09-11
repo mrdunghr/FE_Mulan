@@ -1,0 +1,54 @@
+/* CSS cho footer */
+.footer {
+    background-color: #333; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 30px 0; /* Khoảng cách bên trên và dưới */
+}
+
+.footer h3 {
+    font-size: 20px; /* Cỡ chữ tiêu đề */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+.footer p {
+    font-size: 16px; /* Cỡ chữ nội dung */
+    margin-bottom: 10px; /* Khoảng cách dưới mỗi đoạn văn bản */
+}
+
+/* CSS cho danh sách liên kết */
+.footer ul {
+    list-style: none; /* Ẩn dấu đầu dòng của danh sách */
+    padding: 0; /* Xóa khoảng cách nội dung trong danh sách */
+}
+
+.footer ul li {
+    margin-bottom: 5px; /* Khoảng cách dưới mỗi mục danh sách */
+}
+
+/* CSS cho biểu tượng xã hội */
+.footer ul li a {
+    color: #fff; /* Màu chữ liên kết */
+    text-decoration: none; /* Loại bỏ gạch chân liên kết */
+    display: block; /* Hiển thị liên kết dưới dạng khối để có thể tùy chỉnh padding và margin */
+}
+
+/* CSS cho biểu tượng xã hội */
+.footer ul li a i {
+    margin-right: 5px; /* Khoảng cách bên phải của biểu tượng xã hội */
+}
+
+/* CSS cho liên kết liên hệ */
+.footer ul li a.contact-link {
+    font-weight: bold; /* Đậm cho liên kết liên hệ */
+}
+
+/* CSS cho liên kết xã hội được định dạng theo cột */
+.footer ul.social-links {
+    column-count: 3; /* Chia danh sách xã hội thành 3 cột */
+}
+
+/* CSS cho phần tiêu đề liên kết nhanh */
+.footer h3.quick-links-title {
+    font-size: 18px; /* Cỡ chữ tiêu đề liên kết nhanh */
+    margin-top: 20px; /* Khoảng cách bên trên tiêu đề liên kết nhanh */
+}

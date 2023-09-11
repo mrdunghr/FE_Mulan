@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {checkThePermissionToUseTheKey} from "../../api/api_call";
 import Swal from "sweetalert2";
 import Header from "../Header";
 
-export default function DetailCustomer() {
+export default function HomeDetails() {
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
     const [permissionKeys, setPermissionKeys] = useState({}); // Thêm state để lưu Permission Key
@@ -52,40 +52,43 @@ export default function DetailCustomer() {
                 console.error('Lỗi khi kiểm tra quyền sử dụng key:', error.response.data.message);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
+                    title: 'Toang rồi...',
                     text: 'Bạn không có quyền sử dụng key này tại đây!',
                 })
             });
     };
+
     return (
         <>
-        <Header></Header>
-        <div className="user-detail">
-            <h2>User Details</h2>
-            {userInfo && (
-                <>
-                    <p><strong>Authentication Type: {userInfo.authenticationType}</strong></p>
-                    <p><strong>Created Time: {userInfo.createdTime}</strong></p>
-                    <p><strong>Email: {userInfo.email}</strong></p>
-                    <p><strong>Enabled: {userInfo.enabled ? 'Yes' : 'No'}</strong></p>
-                    <p><strong>Phone: {userInfo.phone}</strong></p>
-                    <p><strong>Username: {userInfo.username}</strong></p>
-                    <p><strong>Money: {userInfo.money}</strong></p>
+            <Header />
+            <div className="container-fluid">
+                <div className="row">
+                    {/* Sidebar */}
+                    <nav
+                        id="sidebar"
+                        className="col-md-3 col-lg-2 d-md-block bg-light sidebar"
+                    >
+                        <div className="position-sticky">
+                            <ul className="nav flex-column">
+                                <li className="nav-item">
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/details-customer">Home</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/">Home</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
 
-                    <h3>Key Generators:</h3>
-                    <ul>
-                        {userInfo.keyGens.map((keyGen, index) => (
-                            <li key={index}>
-                                <p><strong>Code Key: {keyGen.codeKey}</strong></p>
-                                <p><strong>Expiration Date: {new Date(keyGen.endDate).toLocaleString()}</strong></p>
-                                <p><strong>Permission Key: {permissionKeys[keyGen.id]}</strong></p>
-                                <button onClick={() => checkPermissionAndSetToState(keyGen.id)}>Kiểm tra quyền</button>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
-        </div>
+
+                    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <h1>ok</h1>
+                    </main>
+                </div>
+            </div>
         </>
     );
 }

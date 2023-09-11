@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Header() {
     const [userInfo, setUserInfo] = useState(null);
@@ -59,7 +58,7 @@ export default function Header() {
                                     </button>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/customer" style={{ textDecoration: "none" }}>
+                                    <Link to="/home-details-layout" style={{textDecoration: "none"}}>
                                         <span className="nav-link">Xin chào {userInfo.username}</span>
                                     </Link>
                                 </li>
