@@ -80,7 +80,7 @@ export default function LoginPage() {
                                     onChange={handlePasswordChange}/>
                             </div>
                             <div className="form-group text-center">
-                                <button type="button" className="btn btn-primary"
+                                <button type="submit" className="btn btn-primary"
                                     onClick={handleLogin}>
                                     Đăng nhập
                                 </button>

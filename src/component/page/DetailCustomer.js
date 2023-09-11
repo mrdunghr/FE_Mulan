@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import {checkThePermissionToUseTheKey} from "../../api/api_call";
 import Swal from "sweetalert2";
+import Header from "../Header";
 
 export default function DetailCustomer() {
     const [userInfo, setUserInfo] = useState(null);
@@ -34,17 +35,6 @@ export default function DetailCustomer() {
         }
     }, [userInfo]);
 
-    const handleLogout = () => {
-        // Xóa thông tin người dùng khỏi localStorage
-        localStorage.removeItem('userInfo');
-
-        // Xóa thông tin người dùng khỏi state
-        setUserInfo(null);
-
-        // Chuyển hướng sang trang chi tiết người dùng
-        navigate('/login');
-    };
-
     // Hàm này sẽ gọi checkThePermissionToUseTheKey và cập nhật state permissionKeys
     const checkPermissionAndSetToState = (idKey) => {
         checkThePermissionToUseTheKey(idKey)
@@ -68,6 +58,8 @@ export default function DetailCustomer() {
             });
     };
     return (
+        <>
+        <Header></Header>
         <div className="user-detail">
             <h2>User Details</h2>
             {userInfo && (
@@ -93,12 +85,7 @@ export default function DetailCustomer() {
                     </ul>
                 </>
             )}
-
-            <div className="form-group text-center">
-                <button type="button" className="btn btn-primary" onClick={handleLogout}>
-                    Đăng xuất
-                </button>
-            </div>
         </div>
+        </>
     );
 }
