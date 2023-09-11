@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import {checkThePermissionToUseTheKey} from "../../api/api_call";
+import Swal from "sweetalert2";
 
 export default function DetailCustomer() {
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
+    const [permissionKeys, setPermissionKeys] = useState({}); // Thêm state để lưu Permission Key
 
     useEffect(() => {
         const storedUserInfo = localStorage.getItem('userInfo');
@@ -42,6 +44,29 @@ export default function DetailCustomer() {
         // Chuyển hướng sang trang chi tiết người dùng
         navigate('/login');
     };
+
+    // Hàm này sẽ gọi checkThePermissionToUseTheKey và cập nhật state permissionKeys
+    const checkPermissionAndSetToState = (idKey) => {
+        checkThePermissionToUseTheKey(idKey)
+            .then(permissionKey => {
+                setPermissionKeys(permissionKey); // Cập nhật giá trị prevPermissionKeys bằng giá trị boolean
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Bạn có thể sử dụng key này tại đây',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+            })
+            .catch(error => {
+                console.error('Lỗi khi kiểm tra quyền sử dụng key:', error.response.data.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Bạn không có quyền sử dụng key này tại đây!',
+                })
+            });
+    };
     return (
         <div className="user-detail">
             <h2>User Details</h2>
@@ -61,6 +86,8 @@ export default function DetailCustomer() {
                             <li key={index}>
                                 <p><strong>Code Key: {keyGen.codeKey}</strong></p>
                                 <p><strong>Expiration Date: {new Date(keyGen.endDate).toLocaleString()}</strong></p>
+                                <p><strong>Permission Key: {permissionKeys[keyGen.id]}</strong></p>
+                                <button onClick={() => checkPermissionAndSetToState(keyGen.id)}>Kiểm tra quyền</button>
                             </li>
                         ))}
                     </ul>
