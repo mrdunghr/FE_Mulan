@@ -52,3 +52,13 @@
     font-size: 18px; /* Cỡ chữ tiêu đề liên kết nhanh */
     margin-top: 20px; /* Khoảng cách bên trên tiêu đề liên kết nhanh */
 }
+
+.footer {
+    position: fixed; /* Đặt vị trí cố định */
+    bottom: 0; /* Đặt ở phía dưới cùng */
+    width: 100%; /* Chiều rộng bằng 100% của trang */
+    background-color: #333; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 20px 0; /* Khoảng cách giữa nội dung và lề */
+    text-align: center; /* Căn giữa nội dung */
+}

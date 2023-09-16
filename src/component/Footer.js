@@ -8,9 +8,9 @@ export default function Footer() {
                 <div className="row">
                     <div className="col-md-4">
                         <h3>Liên hệ</h3>
-                        <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-                        <p>Email: example@example.com</p>
-                        <p>Điện thoại: (123) 456-7890</p>
+                        <p>Địa chỉ: Tổ 1 Khu 2 - P.Mông Dương - TP.Cẩm Phả - T.Quảng Ninh</p>
+                        <p>Email: mrdunghr@gmail.com</p>
+                        <p>Điện thoại: (+84) 382-564-626</p>
                     </div>
                     <div className="col-md-4">
                         <h3>Liên kết nhanh</h3>
