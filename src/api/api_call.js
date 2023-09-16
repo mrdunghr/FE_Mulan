@@ -49,3 +49,25 @@ export const register = (username, password, email, phone) => {
             throw error; // Ném lỗi để xử lý ở phần gọi hàm
         });
 }
+
+// Hàm kiểm tra tài khoản có được kích hoạt hay không
+export const checkActiveCustomer = async (username) => {
+    try {
+        const response = await axios.get(BASE_URL + `/api/v1/customers/check-active/${username}`);
+        const isActive = response.data; // Nhận kết quả từ phản hồi (một giá trị Boolean)
+        console.log(isActive)
+
+        if (isActive) {
+            // Tài khoản đã được kích hoạt, thực hiện các thao tác khi tài khoản có hiệu lực
+        } else {
+            // Tài khoản chưa được kích hoạt hoặc bị khóa, thực hiện các thao tác khi tài khoản không có hiệu lực
+        }
+    } catch (error) {
+        console.error('Lỗi kiểm tra tài khoản:', error.response.data.message);
+
+        localStorage.removeItem("userInfo");
+
+        // Xóa token khỏi state
+        localStorage.removeItem("token");
+    }
+};

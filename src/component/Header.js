@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {checkActiveCustomer} from "../api/api_call";
 
 export default function Header() {
     const [userInfo, setUserInfo] = useState(null);
@@ -26,6 +27,13 @@ export default function Header() {
 
         // Chuyển hướng sang home
         navigate('/');
+    };
+
+    const checkUserActivation = async () => {
+        if (userInfo) {
+            console.log(userInfo.username);
+            await checkActiveCustomer(userInfo.username);
+        }
     };
 
     return (
@@ -58,9 +66,12 @@ export default function Header() {
                                     </button>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/home-details-layout" style={{textDecoration: "none"}}>
+                                    <Link to="/home-details-layout" style={{ textDecoration: "none", cursor: "pointer" }}
+                                        onClick={() => {checkUserActivation();
+                                            navigate("/home-details-layout");}}>
                                         <span className="nav-link">Xin chào {userInfo.username}</span>
                                     </Link>
+
                                 </li>
                                 <li className="nav-item">
                                     <span className="nav-link" style={{color: "red"}}>Tiền {userInfo.money}</span>
