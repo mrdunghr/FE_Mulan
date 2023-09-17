@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {BASE_URL} from '../constants';
+import Swal from "sweetalert2";
 
 export const login = (username, password) => {
     const data = {
@@ -71,3 +72,22 @@ export const checkActiveCustomer = async (username) => {
         localStorage.removeItem("token");
     }
 };
+
+export const genKey = (idCustomer) =>{
+    return axios.post(BASE_URL + `/api/v1/customers/key-gen?idCustomer=${idCustomer}`, {})
+        .then((response) => {
+            return response.data
+        })
+        .catch((error) => {
+            return Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: error.response.data.message,
+                showConfirmButton: false,
+                timer: 2000,
+                allowOutsideClick: true, // Cho phép đóng thông báo khi click ra ngoài
+            });
+
+            // throw error.response.data.message; // Ném lỗi để xử lý ở phần gọi hàm
+        });
+}

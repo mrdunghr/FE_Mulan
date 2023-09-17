@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Header from "../Header";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import {checkActiveCustomer, genKey, getIdCustomerfromCustomerName} from "../../api/api_call";
 
 export default function ThueKeys() {
     const [userInfo, setUserInfo] = useState(null);
@@ -61,7 +62,7 @@ export default function ThueKeys() {
             navigate('/login');
         } else {
             // Đã đăng nhập, cho phép thuê key
-            const newKey = "Mã key mới";
+            const newKey = genKey(userInfo.idCustomer)
             const updatedUserInfo = { ...userInfo }; // tạo một bản sao của userInfo
             updatedUserInfo.keyGens.push(newKey); // thêm key mới vào danh sách keyGens
 
@@ -79,7 +80,6 @@ export default function ThueKeys() {
                 timer: 2000,
                 allowOutsideClick: true, // Đóng thông báo khi click ra ngoài
             });
-            console.log(updatedUserInfo);
         }
     };
 
