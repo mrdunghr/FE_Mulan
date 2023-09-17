@@ -55,7 +55,7 @@ export const checkActiveCustomer = async (username) => {
     try {
         const response = await axios.get(BASE_URL + `/api/v1/customers/check-active/${username}`);
         const isActive = response.data; // Nhận kết quả từ phản hồi (một giá trị Boolean)
-        console.log(isActive)
+        console.log("Tài khoản đang được kích hoạt: ", isActive)
 
         if (isActive) {
             // Tài khoản đã được kích hoạt, thực hiện các thao tác khi tài khoản có hiệu lực

@@ -81,7 +81,11 @@ export default function Header() {
                     </ul>
                 </div>
                 <Link to="/nap-tien">
-                    <span className="nav-link" style={{color: "blue"}}>Nạp tiền</span>
+                    <button style={{color: "blue"}}>Nạp tiền</button>
+                </Link>
+
+                <Link to="/thue-keys">
+                    <button style={{color: "red"}}>Thuê Key</button>
                 </Link>
             </div>
         </nav>
